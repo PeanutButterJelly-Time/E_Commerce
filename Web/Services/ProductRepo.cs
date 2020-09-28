@@ -19,7 +19,7 @@ namespace Web.Services
         private static string[] myFile = File.ReadAllLines(newPath);
         
 
-        public IEnumerable<Cereal> GetCereals()
+        public IEnumerable<Cereal> GetCereals(string sortBy)
         {
             foreach(string line in myFile)
             {

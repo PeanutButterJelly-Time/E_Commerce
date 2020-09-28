@@ -8,6 +8,6 @@ namespace Web.Services
 {
     public interface IProduct
     {
-        IEnumerable<Cereal> GetCereals();
+        IEnumerable<Cereal> GetCereals(string sortBy);
     }
 }
