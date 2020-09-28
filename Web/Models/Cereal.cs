@@ -9,7 +9,7 @@ namespace Web.Models
     {
         public override string Name { get; set; }
         public override string Manufacturer { get; set; }
-        public Type Type { get; set; }
+        public string Type { get; set; }
         public double Calories { get; set; }
         public double Protein { get; set; }
         public double Fat { get; set; }
@@ -24,9 +24,5 @@ namespace Web.Models
         public double Cups { get; set; }
         public override double Rating { get; set; }
     }
-    public enum Type
-    {
-        Hot,
-        Cold,
-    }
+   
 }
