@@ -31,12 +31,6 @@ namespace Web.Controllers
             var cereal = productRepo.GetCereal(id);
             return View(cereal);
         }
-
-        public ActionResult Name(string name)
-        {
-            var cereal = productRepo.GetCerealName(name);
-            return View(cereal);
-        }
        
 
         // GET: ProductController/Create

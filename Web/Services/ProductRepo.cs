@@ -100,19 +100,13 @@ namespace Web.Services
             
             
         }
-        public object GetCereal(int id)
+        public Cereal GetCereal(int id)
         {
             return Cereals.FirstOrDefault(c => c.Id == id);
         }
 
-        public object GetCerealName(string name)
-        {
-            return Cereals.FirstOrDefault(c => c.Name == name);
-        }
+        
 
-        public Cereal GetCereal(string name)
-        {
-            return Cereals.FirstOrDefault(c => c.Name == name);
-        }
+        
     }
 }
