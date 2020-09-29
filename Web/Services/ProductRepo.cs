@@ -15,11 +15,11 @@ namespace Web.Services
           
         };
         private static string path = Environment.CurrentDirectory;
-        private static string newPath = Path.GetFullPath(Path.Combine(path, @"wwwroot\cereal.csv"));
+        private static string newPath = Path.GetFullPath(Path.Combine(path, @"wwwroot/cereal.csv"));
         private static string[] myFile = File.ReadAllLines(newPath);
         
 
-        public IEnumerable<Cereal> GetCereals()
+        public IEnumerable<Cereal> GetCereals(string sortBy)
         {
             foreach(string line in myFile)
             {
@@ -45,7 +45,19 @@ namespace Web.Services
                 });
                 
             }
+            switch (sortBy)
+            {
+                case "Ascending":
+                    return Cereals.OrderBy(c => c.Name);
+                case "Descending":
+                    return Cereals.OrderByDescending(c => c.Name);
+            }
             return Cereals;
+        }
+
+        public Cereal GetCereal(string name)
+        {
+            return Cereals.FirstOrDefault(c => c.Name == name);
         }
     }
 }

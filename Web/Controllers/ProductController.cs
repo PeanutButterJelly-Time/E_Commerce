@@ -18,16 +18,21 @@ namespace Web.Controllers
         }
 
         // GET: ProductController
-        public ActionResult Index()
+        public ActionResult Index(string sortBy)
         {
-            var cereals = productRepo.GetCereals();
+            var cereals = productRepo.GetCereals(sortBy);
             return View(cereals);
         }
 
         // GET: ProductController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string name)
         {
-            return View();
+            var cereal = productRepo.GetCereal(name);
+            if(cereal == null)
+            {
+                return NotFound();
+            }
+            return View(cereal);
         }
 
         // GET: ProductController/Create

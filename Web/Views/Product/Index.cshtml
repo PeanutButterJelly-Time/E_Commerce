@@ -1,4 +1,15 @@
-﻿@foreach(var cereal in Model)
+﻿@model IEnumerable<Cereal>
+
+<h1>Cereals</h1>
+
+<h3>Sort by:</h3>
+<form>
+    <label><input type="radio" name="sortBy" value="Ascending" /> Ascending </label>
+    <label><input type="radio" name="sortBy" value="Descending" /> Descending </label>
+    <button>Sort</button>
+</form>
+
+@foreach(var cereal in Model)
 {
     <p>@cereal.Name</p>
     <ul>
