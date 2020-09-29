@@ -40,18 +40,58 @@ namespace Web.Services
                     Rating = Convert.ToDouble(column[15]),
                 };
 
-                Cereals.Add(cereal);
+                cereal = TypeOfCereal(cereal);
+
+                Cereals.Add(Manufacturer(cereal));
 
             }
         }
-      
-       
+
+        private Cereal Manufacturer(Cereal cereal)
+        {
+            if (cereal.Manufacturer == "A")
+                cereal.Manufacturer = "American Home Food Products";
+            else if (cereal.Manufacturer == "G")
+                cereal.Manufacturer = "General Mills";
+            else if (cereal.Manufacturer == "K")
+                cereal.Manufacturer = "Kelloggs";
+            else if (cereal.Manufacturer == "N")
+                cereal.Manufacturer = "Nabisco";
+            else if (cereal.Manufacturer == "P")
+                cereal.Manufacturer = "Post";
+            else if (cereal.Manufacturer == "Q")
+                cereal.Manufacturer = "Quaker Oats";
+            else if (cereal.Manufacturer == "R")
+                cereal.Manufacturer = "Ralston Purina";
+
+            return cereal;
+         }
+        private Cereal TypeOfCereal(Cereal cereal)
+        {
+            if (cereal.Type == "H")
+                cereal.Type = "Hot";
+            else cereal.Type = "Cold";
+            return cereal;
+        }
         
 
-        public IEnumerable<Cereal> GetCereals()
+        public IEnumerable<Cereal> GetCereals(string sortBy, string name)
         {
+            if(name != null)
+            {
+                return Cereals.Where(c => c.Name.ToLower() == name.ToLower());
+            }
+            switch (sortBy)
+            {
+                case "Ascending":
+                    return Cereals.OrderBy(c => c.Name);
+                case "Descending":
+                    return Cereals.OrderByDescending(c => c.Name);
+                default:
+                    return Cereals;
+            }
             
-            return Cereals;
+            
         }
         public object GetCereal(int id)
         {
@@ -60,7 +100,7 @@ namespace Web.Services
 
         public object GetCerealName(string name)
         {
-            return Cereals.Find(c => c.Name == name);
+            return Cereals.FirstOrDefault(c => c.Name == name);
         }
     }
 }
