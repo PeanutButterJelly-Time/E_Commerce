@@ -75,11 +75,18 @@ namespace Web.Services
         }
         
 
-        public IEnumerable<Cereal> GetCereals(string sortBy, string name)
+        public IEnumerable<Cereal> GetCereals(string sortBy, string name, string searchParam)
         {
             if(name != null)
             {
-                return Cereals.Where(c => c.Name.ToLower() == name.ToLower());
+                switch(searchParam)
+                {
+                    case "Name":
+                        return Cereals.Where(c => c.Name.ToLower() == name.ToLower());
+                    case "Manufacturer":
+                        return Cereals.Where(c => c.Manufacturer.ToLower() == name.ToLower());
+                }
+                
             }
             switch (sortBy)
             {
