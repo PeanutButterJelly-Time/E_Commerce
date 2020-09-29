@@ -10,7 +10,7 @@ namespace Web.Services
     public class ProductRepo : IProduct
     {
         private static string path = Environment.CurrentDirectory;
-        private static string newPath = Path.GetFullPath(Path.Combine(path, @"wwwroot\cereal.csv"));
+        private static string newPath = Path.GetFullPath(Path.Combine(path, @"wwwroot/cereal.csv"));
         private static string[] myFile = File.ReadAllLines(newPath);
         private readonly List<Cereal> Cereals = new List<Cereal>();
         public ProductRepo()
@@ -99,6 +99,11 @@ namespace Web.Services
         }
 
         public object GetCerealName(string name)
+        {
+            return Cereals.FirstOrDefault(c => c.Name == name);
+        }
+
+        public Cereal GetCereal(string name)
         {
             return Cereals.FirstOrDefault(c => c.Name == name);
         }
