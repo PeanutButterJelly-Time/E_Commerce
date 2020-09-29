@@ -27,7 +27,12 @@ namespace Web.Controllers
         // GET: ProductController/Details/5
         public ActionResult Details(string name)
         {
-            return View();
+            var cereal = productRepo.GetCereal(name);
+            if(cereal == null)
+            {
+                return NotFound();
+            }
+            return View(cereal);
         }
 
         // GET: ProductController/Create

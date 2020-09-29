@@ -1,0 +1,18 @@
+﻿@model Cereal
+<h1>Cereals</h1>
+<h3>Search by name:</h3>
+<form>
+    <input type="text" placeholder="Search.." name="search" />
+    <button type="submit">Search</button>
+</form>
+
+<p>@Model.Name</p>
+
+@if (Model.Name == null)
+{
+    <ul>
+        <li>@Model.Manufacturer</li>
+        <li>@Model.Rating</li>
+    </ul>
+}
+
