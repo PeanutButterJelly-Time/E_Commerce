@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Web.Models;
 
 namespace Web.Services
@@ -13,6 +12,7 @@ namespace Web.Services
         private static string newPath = Path.GetFullPath(Path.Combine(path, @"wwwroot/cereal.csv"));
         private static string[] myFile = File.ReadAllLines(newPath);
         private readonly List<Cereal> Cereals = new List<Cereal>();
+
         public ProductRepo()
         {
             int x = 1;
@@ -43,7 +43,6 @@ namespace Web.Services
                 cereal = TypeOfCereal(cereal);
 
                 Cereals.Add(Manufacturer(cereal));
-
             }
         }
 
@@ -65,7 +64,8 @@ namespace Web.Services
                 cereal.Manufacturer = "Ralston Purina";
 
             return cereal;
-         }
+        }
+
         private Cereal TypeOfCereal(Cereal cereal)
         {
             if (cereal.Type == "H")
@@ -73,11 +73,10 @@ namespace Web.Services
             else cereal.Type = "Cold";
             return cereal;
         }
-        
 
         public IEnumerable<Cereal> GetCereals(string sortBy, string name)
         {
-            if(name != null)
+            if (name != null)
             {
                 return Cereals.Where(c => c.Name.ToLower() == name.ToLower());
             }
@@ -85,25 +84,21 @@ namespace Web.Services
             {
                 case "Ascending":
                     return Cereals.OrderBy(c => c.Name);
+
                 case "Descending":
                     return Cereals.OrderByDescending(c => c.Name);
+
                 default:
                     return Cereals;
             }
-            
-            
         }
-        public object GetCereal(int id)
+
+        public Cereal GetCereal(int id)
         {
             return Cereals.FirstOrDefault(c => c.Id == id);
         }
 
-        public object GetCerealName(string name)
-        {
-            return Cereals.FirstOrDefault(c => c.Name == name);
-        }
-
-        public Cereal GetCereal(string name)
+        public Cereal GetCerealName(string name)
         {
             return Cereals.FirstOrDefault(c => c.Name == name);
         }
