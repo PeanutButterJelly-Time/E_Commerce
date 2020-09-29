@@ -7,9 +7,6 @@ namespace Web.Models
 {
     public class Cereal : Product
     {
-        public int Id { get; set; }
-        public override string Name { get; set; }
-        public override string Manufacturer { get; set; }
         public string Type { get; set; }
         public double Calories { get; set; }
         public double Protein { get; set; }
@@ -23,7 +20,6 @@ namespace Web.Models
         public int Shelf { get; set; }
         public double Weight { get; set; }
         public double Cups { get; set; }
-        public override double Rating { get; set; }
     }
    
 }
