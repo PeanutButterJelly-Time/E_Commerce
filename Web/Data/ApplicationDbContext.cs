@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web.Models;
 using Web.Models.Identity;
 
 namespace Web.Data
@@ -16,6 +17,10 @@ namespace Web.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            
         }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Cereal> Cereals { get; set; }
+        public DbSet<Shoe> Shoes { get; set; }
     }
 }

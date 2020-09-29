@@ -8,11 +8,11 @@ using Web.Services;
 
 namespace Web.Controllers
 {
-    public class ProductController : Controller
+    public class CerealController : Controller
     {
         private readonly ICerealRepo productRepo;
 
-        public ProductController(ICerealRepo productRepo)
+        public CerealController(ICerealRepo productRepo)
         {
             this.productRepo = productRepo;
         }
