@@ -10,9 +10,9 @@ namespace Web.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IProduct productRepo;
+        private readonly IProductRepository productRepo;
 
-        public ProductController(IProduct productRepo)
+        public ProductController(IProductRepository productRepo)
         {
             this.productRepo = productRepo;
         }

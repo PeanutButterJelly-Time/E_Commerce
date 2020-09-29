@@ -7,7 +7,7 @@ using Web.Models;
 
 namespace Web.Services
 {
-    public class ProductRepo : IProduct
+    public class ProductRepo : IProductRepository
     {
         private static string path = Environment.CurrentDirectory;
         private static string newPath = Path.GetFullPath(Path.Combine(path, @"wwwroot/cereal.csv"));
