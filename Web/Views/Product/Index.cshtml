@@ -1,19 +1,22 @@
 ﻿@model IEnumerable<Cereal>
-
-<h1>Cereals</h1>
-
-<h3>Sort by:</h3>
 <form>
-    <label><input type="radio" name="sortBy" value="Ascending" /> Ascending </label>
-    <label><input type="radio" name="sortBy" value="Descending" /> Descending </label>
-    <button>Sort</button>
+    <label><input type="text" name="name" /></label>
+    <button>Search</button>
 </form>
+    <form>
+        <label><input type="radio" name="sortBy" value="Ascending" /> Ascending </label>
+        <label><input type="radio" name="sortBy" value="Descending" /> Descending </label>
+        <button>Sort</button>
+    </form>
 
 @foreach(var cereal in Model)
 {
-    <p>@cereal.Name</p>
-    <ul>
-        <li>@cereal.Manufacturer</li>
-        <li>@cereal.Rating</li>
-    </ul>
+<section>
+    <h1><a href="Product/Details/@cereal.Id">@cereal.Name</a></h1>
+    <div class="card-columns box-shadow">
+        <p>Manufacturer: @cereal.Manufacturer</p>
+        <p>Rating: @cereal.Rating</p>
+
+    </div>
+</section>
 }

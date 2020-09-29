@@ -9,23 +9,19 @@ namespace Web.Services
 {
     public class ProductRepo : IProduct
     {
-        private readonly List<Cereal> Cereals = new List<Cereal>
-        
-        {
-          
-        };
         private static string path = Environment.CurrentDirectory;
         private static string newPath = Path.GetFullPath(Path.Combine(path, @"wwwroot/cereal.csv"));
         private static string[] myFile = File.ReadAllLines(newPath);
-        
-
-        public IEnumerable<Cereal> GetCereals(string sortBy)
+        private readonly List<Cereal> Cereals = new List<Cereal>();
+        public ProductRepo()
         {
-            foreach(string line in myFile)
+            int x = 1;
+            foreach (string line in myFile)
             {
                 string[] column = line.Split(",");
-                Cereals.Add(new Cereal
+                var cereal = new Cereal
                 {
+                    Id = x++,
                     Name = column[0],
                     Manufacturer = column[1],
                     Type = column[2],
@@ -42,8 +38,48 @@ namespace Web.Services
                     Weight = Convert.ToDouble(column[13]),
                     Cups = Convert.ToDouble(column[14]),
                     Rating = Convert.ToDouble(column[15]),
-                });
-                
+                };
+
+                cereal = TypeOfCereal(cereal);
+
+                Cereals.Add(Manufacturer(cereal));
+
+            }
+        }
+
+        private Cereal Manufacturer(Cereal cereal)
+        {
+            if (cereal.Manufacturer == "A")
+                cereal.Manufacturer = "American Home Food Products";
+            else if (cereal.Manufacturer == "G")
+                cereal.Manufacturer = "General Mills";
+            else if (cereal.Manufacturer == "K")
+                cereal.Manufacturer = "Kelloggs";
+            else if (cereal.Manufacturer == "N")
+                cereal.Manufacturer = "Nabisco";
+            else if (cereal.Manufacturer == "P")
+                cereal.Manufacturer = "Post";
+            else if (cereal.Manufacturer == "Q")
+                cereal.Manufacturer = "Quaker Oats";
+            else if (cereal.Manufacturer == "R")
+                cereal.Manufacturer = "Ralston Purina";
+
+            return cereal;
+         }
+        private Cereal TypeOfCereal(Cereal cereal)
+        {
+            if (cereal.Type == "H")
+                cereal.Type = "Hot";
+            else cereal.Type = "Cold";
+            return cereal;
+        }
+        
+
+        public IEnumerable<Cereal> GetCereals(string sortBy, string name)
+        {
+            if(name != null)
+            {
+                return Cereals.Where(c => c.Name.ToLower() == name.ToLower());
             }
             switch (sortBy)
             {
@@ -51,8 +87,20 @@ namespace Web.Services
                     return Cereals.OrderBy(c => c.Name);
                 case "Descending":
                     return Cereals.OrderByDescending(c => c.Name);
+                default:
+                    return Cereals;
             }
-            return Cereals;
+            
+            
+        }
+        public object GetCereal(int id)
+        {
+            return Cereals.FirstOrDefault(c => c.Id == id);
+        }
+
+        public object GetCerealName(string name)
+        {
+            return Cereals.FirstOrDefault(c => c.Name == name);
         }
 
         public Cereal GetCereal(string name)
