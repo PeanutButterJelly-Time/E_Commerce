@@ -26,6 +26,7 @@ namespace Web.Controllers
 
 
         // GET: ProductController/Details/5
+        [Route("/Product/{id}")]
         public ActionResult Details(int id)
         {
             var cereal = productRepo.GetCereal(id);
