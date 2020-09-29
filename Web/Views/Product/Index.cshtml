@@ -1,8 +1,12 @@
-﻿@foreach(var cereal in Model)
+﻿@model List<Cereal>
+@foreach(var cereal in Model)
 {
-    <p>@cereal.Name</p>
-    <ul>
-        <li>@cereal.Manufacturer</li>
-        <li>@cereal.Rating</li>
-    </ul>
+<section>
+    <h1><a href="Product/Details/@cereal.Id">@cereal.Name</a></h1>
+    <div class="card-columns box-shadow">
+        <p>Manufacturer: @cereal.Manufacturer</p>
+        <p>Rating: @cereal.Rating</p>
+
+    </div>
+</section>
 }

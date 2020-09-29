@@ -7,6 +7,7 @@ namespace Web.Models
 {
     public class Cereal : Product
     {
+        public int Id { get; set; }
         public override string Name { get; set; }
         public override string Manufacturer { get; set; }
         public string Type { get; set; }

@@ -9,23 +9,19 @@ namespace Web.Services
 {
     public class ProductRepo : IProduct
     {
-        private readonly List<Cereal> Cereals = new List<Cereal>
-        
-        {
-          
-        };
         private static string path = Environment.CurrentDirectory;
         private static string newPath = Path.GetFullPath(Path.Combine(path, @"wwwroot\cereal.csv"));
         private static string[] myFile = File.ReadAllLines(newPath);
-        
-
-        public IEnumerable<Cereal> GetCereals()
+        private readonly List<Cereal> Cereals = new List<Cereal>();
+        public ProductRepo()
         {
-            foreach(string line in myFile)
+            int x = 1;
+            foreach (string line in myFile)
             {
                 string[] column = line.Split(",");
-                Cereals.Add(new Cereal
+                var cereal = new Cereal
                 {
+                    Id = x++,
                     Name = column[0],
                     Manufacturer = column[1],
                     Type = column[2],
@@ -42,10 +38,29 @@ namespace Web.Services
                     Weight = Convert.ToDouble(column[13]),
                     Cups = Convert.ToDouble(column[14]),
                     Rating = Convert.ToDouble(column[15]),
-                });
-                
+                };
+
+                Cereals.Add(cereal);
+
             }
+        }
+      
+       
+        
+
+        public IEnumerable<Cereal> GetCereals()
+        {
+            
             return Cereals;
+        }
+        public object GetCereal(int id)
+        {
+            return Cereals.FirstOrDefault(c => c.Id == id);
+        }
+
+        public object GetCerealName(string name)
+        {
+            return Cereals.Find(c => c.Name == name);
         }
     }
 }

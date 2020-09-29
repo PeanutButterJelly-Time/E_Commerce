@@ -20,14 +20,23 @@ namespace Web.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
+            
             var cereals = productRepo.GetCereals();
             return View(cereals);
         }
 
+
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var cereal = productRepo.GetCereal(id);
+            return View(cereal);
+        }
+
+        public ActionResult Name(string name)
+        {
+            var cereal = productRepo.GetCerealName(name);
+            return View(cereal);
         }
 
         // GET: ProductController/Create

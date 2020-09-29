@@ -9,5 +9,7 @@ namespace Web.Services
     public interface IProduct
     {
         IEnumerable<Cereal> GetCereals();
+        object GetCereal(int id);
+        object GetCerealName(string name);
     }
 }
