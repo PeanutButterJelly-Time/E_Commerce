@@ -6,7 +6,7 @@ using Web.Models;
 
 namespace Web.Services
 {
-    public interface IProduct
+    public interface ICerealRepo
     {
         IEnumerable<Cereal> GetCereals(string sortBy, string name, string searchParam);
         Cereal GetCereal(int id);
