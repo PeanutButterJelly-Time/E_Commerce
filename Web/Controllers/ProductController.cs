@@ -18,9 +18,9 @@ namespace Web.Controllers
         }
 
         // GET: ProductController
-        public ActionResult Index(string sortBy, string name)
+        public ActionResult Index(string sortBy, string name, string searchParam)
         {
-            var cereals = productRepo.GetCereals(sortBy, name);
+            var cereals = productRepo.GetCereals(sortBy, name, searchParam);
             return View(cereals);
         }
 
@@ -29,12 +29,6 @@ namespace Web.Controllers
         public ActionResult Details(int id)
         {
             var cereal = productRepo.GetCereal(id);
-            return View(cereal);
-        }
-
-        public ActionResult Name(string name)
-        {
-            var cereal = productRepo.GetCerealName(name);
             return View(cereal);
         }
        

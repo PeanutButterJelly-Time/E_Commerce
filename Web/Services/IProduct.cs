@@ -8,8 +8,7 @@ namespace Web.Services
 {
     public interface IProduct
     {
-        IEnumerable<Cereal> GetCereals(string sortBy, string name);
-        object GetCereal(int id);
-        object GetCerealName(string name);
+        IEnumerable<Cereal> GetCereals(string sortBy, string name, string searchParam);
+        Cereal GetCereal(int id);
     }
 }
