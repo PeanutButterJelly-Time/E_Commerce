@@ -7,13 +7,13 @@ using Web.Models;
 
 namespace Web.Services
 {
-    public class ProductRepo : IProduct
+    public class CerealRepo : ICerealRepo
     {
         private static string path = Environment.CurrentDirectory;
         private static string newPath = Path.GetFullPath(Path.Combine(path, @"wwwroot/cereal.csv"));
         private static string[] myFile = File.ReadAllLines(newPath);
         private readonly List<Cereal> Cereals = new List<Cereal>();
-        public ProductRepo()
+        public CerealRepo()
         {
             int x = 1;
             foreach (string line in myFile)
