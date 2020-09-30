@@ -10,5 +10,6 @@ namespace Web.Services
     {
         IEnumerable<Cereal> GetCereals(string sortBy, string name, string searchParam);
         Cereal GetCereal(int id);
+        IEnumerable<Cereal> PopulateCerealsTable();
     }
 }

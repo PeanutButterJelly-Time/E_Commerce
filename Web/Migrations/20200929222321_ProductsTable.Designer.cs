@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web.Data;
 
 namespace Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200929222321_ProductsTable")]
+    partial class ProductsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -296,32 +298,6 @@ namespace Web.Migrations
                         .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("Shoe");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = -1,
-                            Manufacturer = "Jordan",
-                            Name = "AJ1",
-                            Rating = 0.0,
-                            Style = 1
-                        },
-                        new
-                        {
-                            Id = -2,
-                            Manufacturer = "Jordan",
-                            Name = "AJ5",
-                            Rating = 0.0,
-                            Style = 0
-                        },
-                        new
-                        {
-                            Id = -3,
-                            Manufacturer = "Jordan",
-                            Name = "AJ13",
-                            Rating = 0.0,
-                            Style = 0
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
