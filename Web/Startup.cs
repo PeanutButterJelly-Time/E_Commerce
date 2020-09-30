@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Web.Data;
+using Web.Models;
 using Web.Models.Identity;
 using Web.Services;
 
@@ -64,9 +65,8 @@ namespace Web
                 var myDbContext = services.GetService<ApplicationDbContext>();
                 var myCerealMaker = services.GetService<ICerealRepo>();
 
-                if (!myDbContext.Products.Any())
+                if (!myDbContext.Products.OfType<Cereal>().Any())
                 {
-
                     foreach (var cereal in myCerealMaker.PopulateCerealsTable())
                     {
                         myDbContext.Products.Add(cereal);
