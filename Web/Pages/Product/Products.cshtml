@@ -1,17 +1,33 @@
 ﻿@page
 @model Web.Pages.Product.ProductsModel
 @{Layout = "_Layout";
-    }
-    
+}
+
 <div>
     @foreach (var product in Model.List)
     {
         <section class="card text-center float-left col-5">
             <h5>@product.Name</h5>
             <div>
+                <p>Product Type: @product.Discriminator</p>
                 <p>Manufacturer: @product.Manufacturer</p>
-
+                @if (product is Shoe shoe)
+                {
+                    <p>Style: @shoe.Style</p>
+                }
+                else if (product is Cereal cereal)
+                {
+                    <p>Calories: @cereal.Calories</p>
+                    <p>
+                        <a class="btn btn-info"
+                           asp-controller="Cereal"
+                           asp-action="Details"
+                           asp-route-id="@cereal.Id">
+                            Details
+                        </a>
+                    </p>
+                }
             </div>
         </section>
     }
-    </div>
+</div>
