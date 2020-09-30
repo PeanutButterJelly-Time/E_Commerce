@@ -20,9 +20,9 @@ namespace Web.Data
 
             builder.Entity<Shoe>()
                 .HasData(
-                    new Shoe { Id = -1,Name = "AJ1", Manufacturer = "Jordan", Style = Style.Mid },
-                    new Shoe { Id = -2,Name = "AJ5", Manufacturer = "Jordan" },
-                    new Shoe { Id = -3,Name = "AJ13", Manufacturer = "Jordan" }
+                    new Shoe { Id = -1, Name = "AJ1", Manufacturer = "Jordan", Style = Style.Mid },
+                    new Shoe { Id = -2, Name = "AJ5", Manufacturer = "Jordan", Style = Style.High },
+                    new Shoe { Id = -3, Name = "AJ13", Manufacturer = "Jordan" }
                 );
 
 
