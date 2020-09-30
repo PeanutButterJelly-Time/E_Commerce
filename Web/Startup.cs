@@ -43,6 +43,7 @@ namespace Web
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             services.AddScoped<ICerealRepo, CerealRepo>();
+            services.AddScoped<IAdminRepo, AdminRepo>();
             services.AddControllersWithViews();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

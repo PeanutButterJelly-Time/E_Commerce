@@ -18,9 +18,18 @@
     <Compile Remove="Migrations\20200929222016_ProductsTable.Designer.cs" />
     <Compile Remove="Migrations\20200930042545_AddedCategory.cs" />
     <Compile Remove="Migrations\20200930042545_AddedCategory.Designer.cs" />
+    <Compile Remove="Migrations\20200930194206_AddedRoles.cs" />
+    <Compile Remove="Migrations\20200930194206_AddedRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200930195245_SeedRoles.cs" />
+    <Compile Remove="Migrations\20200930195245_SeedRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200930201306_SeedRoles.cs" />
+    <Compile Remove="Migrations\20200930201306_SeedRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200930215034_AddGet.cs" />
+    <Compile Remove="Migrations\20200930215034_AddGet.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />

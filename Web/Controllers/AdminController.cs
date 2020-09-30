@@ -2,44 +2,49 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Web.Data;
 using Web.Services;
 
 namespace Web.Controllers
 {
-    public class CerealController : Controller
+    public class AdminController : Controller
     {
-        private readonly ICerealRepo productRepo;
-
-        public CerealController(ICerealRepo productRepo)
+        private readonly ApplicationDbContext _context;
+        private readonly IAdminRepo repo;
+        public IConfiguration Configuration { get; }
+        public AdminController(ApplicationDbContext context, IAdminRepo repo, IConfiguration configuration)
         {
-            this.productRepo = productRepo;
+            this.repo = repo;
+            _context = context;
+            Configuration = configuration;
+        }
+        // GET: AdminController
+        public ActionResult Index()
+        {
+            var products = repo.GetProducts();
+            return View(products);
         }
 
-        // GET: ProductController
-        public ActionResult Index(string sortBy, string name, string searchParam)
-        {
-            var cereals = productRepo.GetCereals(sortBy, name, searchParam);
-            return View(cereals);
-        }
+        // GET: AdminController/Details/5
 
-        
-        // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
-            var cereal = productRepo.GetCereal(id);
-            return View(cereal);
+            return View();
         }
-       
 
-        // GET: ProductController/Create
+        // GET: AdminController/Create
+
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ProductController/Create
+        // POST: AdminController/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -54,13 +59,15 @@ namespace Web.Controllers
             }
         }
 
-        // GET: ProductController/Edit/5
+        // GET: AdminController/Edit/5
+
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ProductController/Edit/5
+        // POST: AdminController/Edit/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -75,13 +82,15 @@ namespace Web.Controllers
             }
         }
 
-        // GET: ProductController/Delete/5
+        // GET: AdminController/Delete/5
+
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ProductController/Delete/5
+        // POST: AdminController/Delete/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
