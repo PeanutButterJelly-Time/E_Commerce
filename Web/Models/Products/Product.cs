@@ -12,6 +12,7 @@ namespace Web.Models
         public string Name { get; set; }
         public string Manufacturer { get; set; }
         public double Rating { get; set; }
+        public string Discriminator { get; }
         
     }
 }

@@ -17,7 +17,15 @@ namespace Web.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            
+
+            builder.Entity<Shoe>()
+                .HasData(
+                    new Shoe { Id = -1,Name = "AJ1", Manufacturer = "Jordan", Style = Style.Mid },
+                    new Shoe { Id = -2,Name = "AJ5", Manufacturer = "Jordan" },
+                    new Shoe { Id = -3,Name = "AJ13", Manufacturer = "Jordan" }
+                );
+
+
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Cereal> Cereals { get; set; }

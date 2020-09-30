@@ -47,22 +47,7 @@ namespace Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            using (var serviceScope = app.ApplicationServices.CreateScope())
-            {
-                var services = serviceScope.ServiceProvider;
-                var myDbContext = services.GetService<ApplicationDbContext>();
-                var myCerealMaker = services.GetService<ICerealRepo>();
-
-                if(!myDbContext.Products.Any())
-                {
-                    
-                    foreach(var cereal in myCerealMaker.PopulateCerealsTable())
-                    {
-                        myDbContext.Products.Add(cereal);
-                    }
-                    myDbContext.SaveChanges();
-                }
-            }
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -73,7 +58,22 @@ namespace Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var services = serviceScope.ServiceProvider;
+                var myDbContext = services.GetService<ApplicationDbContext>();
+                var myCerealMaker = services.GetService<ICerealRepo>();
+
+                if (!myDbContext.Products.Any())
+                {
+
+                    foreach (var cereal in myCerealMaker.PopulateCerealsTable())
+                    {
+                        myDbContext.Products.Add(cereal);
+                    }
+                    myDbContext.SaveChanges();
+                }
+            }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

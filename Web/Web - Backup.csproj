@@ -7,17 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\Shared\**" />
-    <Content Remove="Pages\Shared\**" />
-    <EmbeddedResource Remove="Pages\Shared\**" />
-    <None Remove="Pages\Shared\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Migrations\20200929222016_ProductsTable.cs" />
     <Compile Remove="Migrations\20200929222016_ProductsTable.Designer.cs" />
-    <Compile Remove="Migrations\20200930042545_AddedCategory.cs" />
-    <Compile Remove="Migrations\20200930042545_AddedCategory.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +20,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Shared\" />
   </ItemGroup>
 
 </Project>
