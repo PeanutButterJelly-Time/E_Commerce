@@ -9,6 +9,7 @@ using Web.Models;
 
 namespace Web.Pages.Product
 {
+    [Authorize(Roles = "Admin")]
     public class ProductModel : PageModel
     {
         private readonly ApplicationDbContext _context;

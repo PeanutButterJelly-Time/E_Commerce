@@ -11,6 +11,7 @@ using Web.Services;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -37,7 +38,7 @@ namespace Web.Controllers
         }
 
         // GET: AdminController/Create
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -45,6 +46,7 @@ namespace Web.Controllers
 
         // POST: AdminController/Create
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -60,14 +62,14 @@ namespace Web.Controllers
         }
 
         // GET: AdminController/Edit/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: AdminController/Edit/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -83,14 +85,14 @@ namespace Web.Controllers
         }
 
         // GET: AdminController/Delete/5
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: AdminController/Delete/5
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
