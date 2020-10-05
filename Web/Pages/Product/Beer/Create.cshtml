@@ -15,9 +15,16 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Beer.BeerStyle" class="control-label"></label>
+                @*
+                    @Html.DropDownListFor(m => m.Beer.BeerStyle,
+                        Html.GetEnumSelectList<Web.Models.Products.BeerStyle>(),
+                        "",
+                        new { @class = "form-control" })
+                *@
                 <select asp-for="Beer.BeerStyle"
                         asp-items="@Html.GetEnumSelectList<Web.Models.Products.BeerStyle>()"
                         class="form-control">
+                    <option></option>
                 </select>
                 <span asp-validation-for="Beer.BeerStyle" class="text-danger"></span>
             </div>

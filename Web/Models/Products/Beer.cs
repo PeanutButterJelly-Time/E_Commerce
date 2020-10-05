@@ -17,7 +17,8 @@ namespace Web.Models.Products
 
     public enum BeerStyle
     {
-        IPA,
+        // There is no 0
+        IPA = 1,
         Sour,
         Stout,
         Saison,
