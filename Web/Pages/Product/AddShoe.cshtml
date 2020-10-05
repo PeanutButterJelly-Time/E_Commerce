@@ -14,5 +14,9 @@
         <input asp-for="Input.Manufacturer" class="form-control" />
         <span asp-validation-for="Input.Manufacturer" class="text-danger"></span>
     </div>
+    <label>
+        <input type="checkbox" name="addAnother" value="true" />
+        Check here to add another shoe.
+    </label>
     <button type="submit" class="btn btn-primary">Add</button>
 </form>

@@ -1,3 +1,6 @@
 ﻿@{
     Layout = "_Layout";
+    ViewData["Username"] = User.Identity.Name;
+    ViewData["Roles"] = User.IsInRole("Admin");
+
 }

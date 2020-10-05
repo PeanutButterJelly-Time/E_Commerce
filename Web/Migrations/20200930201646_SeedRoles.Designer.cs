@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web.Data;
 
 namespace Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200930201646_SeedRoles")]
+    partial class SeedRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -325,22 +327,6 @@ namespace Web.Migrations
                         .HasColumnType("float");
 
                     b.HasDiscriminator().HasValue("Cereal");
-                });
-
-            modelBuilder.Entity("Web.Models.Products.Beer", b =>
-                {
-                    b.HasBaseType("Web.Models.Product");
-
-                    b.Property<double>("Abv")
-                        .HasColumnType("float");
-
-                    b.Property<int>("BeerStyle")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Ibu")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Beer");
                 });
 
             modelBuilder.Entity("Web.Models.Shoe", b =>

@@ -9,4 +9,5 @@ namespace Web.Models.Identity
     public class ApplicationUser : IdentityUser
     {
     }
+   
 }

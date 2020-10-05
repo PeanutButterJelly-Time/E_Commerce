@@ -35,10 +35,13 @@ namespace Web.Pages
                 {
                     UserName = Input.Email,
                     Email = Input.Email,
+                    
                 };
                 var result = await userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    
+                    await userManager.AddToRoleAsync(user,"Admin");
                     await signInManager.SignInAsync(user, isPersistent: false);
 
                     return LocalRedirect("~/");

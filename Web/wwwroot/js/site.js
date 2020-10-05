@@ -2,3 +2,8 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+// https://getbootstrap.com/docs/4.0/components/tooltips/
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})

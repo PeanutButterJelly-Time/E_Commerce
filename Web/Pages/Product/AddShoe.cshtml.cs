@@ -9,6 +9,7 @@ using Web.Models;
 
 namespace Web.Pages.Product
 {
+    [Authorize(Roles = "Admin")]
     public class ProductModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -20,14 +21,18 @@ namespace Web.Pages.Product
         {
           
         }
-       
-        public IActionResult OnPostAsync()
+
+        public IActionResult OnPostAsync(bool addAnother)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-               _context.Products.Add(new Shoe() { Name = Input.Name, Manufacturer = Input.Manufacturer });
-               _context.SaveChanges();
-              
+                _context.Products.Add(new Shoe() { Name = Input.Name, Manufacturer = Input.Manufacturer });
+                _context.SaveChanges();
+
+                if (addAnother)
+                    return RedirectToPage("AddShoe");
+
+                return RedirectToAction("Index", "Admin");
             }
             return Page();
         }

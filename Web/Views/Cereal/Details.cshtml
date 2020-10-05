@@ -1,6 +1,13 @@
 @model Cereal
 ﻿<section>
     <h1>@Model.Name</h1>
+    @if (User.IsInRole("Admin"))
+    {
+        <a class="btn btn-primary"
+           asp-controller="Admin"
+           asp-action="Edit"
+           asp-route-id="@Model.Id">Edit</a>
+    }
     <div class="card-columns box-shadow">
 
         <p>Manufacturer: @Model.Manufacturer</p>
