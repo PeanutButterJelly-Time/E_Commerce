@@ -11,6 +11,9 @@
     <Content Remove="Pages\Shared\**" />
     <EmbeddedResource Remove="Pages\Shared\**" />
     <None Remove="Pages\Shared\**" />
+    <Content Remove="Pages\Product\Beer\Details.cshtml" />
+    <Content Remove="Pages\Product\Beer\Edit.cshtml" />
+    <Content Remove="Pages\Product\Beer\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +41,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.6.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Product\Beer\" />
+  </ItemGroup>
 </Project>

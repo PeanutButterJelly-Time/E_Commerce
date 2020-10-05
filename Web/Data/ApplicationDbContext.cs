@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web.Models;
 using Web.Models.Identity;
+using Web.Models.Products;
 
 namespace Web.Data
 {
@@ -32,6 +33,7 @@ namespace Web.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Cereal> Cereals { get; set; }
         public DbSet<Shoe> Shoes { get; set; }
+
 
         private int nextRoleClaimId = 1;
 
@@ -61,5 +63,8 @@ namespace Web.Data
             modelBuilder.Entity<IdentityRoleClaim<string>>()
                 .HasData(roleClaims);
         }
+
+        public DbSet<Beer> Beer { get; set; }
+
     }
 }
