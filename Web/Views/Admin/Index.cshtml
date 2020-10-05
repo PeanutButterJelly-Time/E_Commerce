@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    <a class="btn btn-primary" asp-page="/Product/AddShoe">Add Shoe</a>
     <div class="">
         @foreach (var product in Model)
         {
@@ -9,7 +10,16 @@
                 <h5>@product.Name</h5>
                 <div>
                     <p>Manufacturer: @product.Manufacturer</p>
-
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
+                    }
+                    else
+                    {
+                        <span class="btn btn-dark disabled"
+                              title="You don't have permissions!"
+                              data-toggle="tooltip">Edit</span>
+                    }
                 </div>
             </section>
         }
