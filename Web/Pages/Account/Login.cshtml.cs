@@ -23,7 +23,7 @@ namespace Web.Pages
         public async Task OnGetAsync()
         {
             // Clear our cookie so we can actually log in
-            //await signInManager.SignOutAsync();
+            await signInManager.SignOutAsync();
         }
 
         public async Task<IActionResult> OnPostAsync()
