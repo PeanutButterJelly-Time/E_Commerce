@@ -33,6 +33,7 @@ namespace Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddSingleton<IUploadServices, AzureUploadService>();
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 var connectionString = Configuration.GetConnectionString("DefaultConnection");

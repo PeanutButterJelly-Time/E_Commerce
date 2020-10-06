@@ -8,16 +8,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Web.Data;
 using Web.Models.Products;
+using Web.Services;
 
 namespace Web.Pages.Product
 {
     public class CreateModel : PageModel
     {
         private readonly Web.Data.ApplicationDbContext _context;
+        private readonly IUploadServices upload;
 
-        public CreateModel(Web.Data.ApplicationDbContext context)
+        public CreateModel(Web.Data.ApplicationDbContext context, IUploadServices upload)
         {
             _context = context;
+            this.upload = upload;
         }
 
         public IActionResult OnGet()
@@ -37,6 +40,9 @@ namespace Web.Pages.Product
         [BindProperty]
         public IFormFile Image { get; set; }
 
+        [TempData]
+        public string UploadedFileLink { get; private set; }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -48,6 +54,8 @@ namespace Web.Pages.Product
             await _context.SaveChangesAsync();
 
             UploadedFileName = Image?.FileName;
+            using var stream = Image.OpenReadStream();
+            UploadedFileLink = await upload.UploadFile(Image.FileName, stream);
             return RedirectToPage("./Index");
         }
     }
