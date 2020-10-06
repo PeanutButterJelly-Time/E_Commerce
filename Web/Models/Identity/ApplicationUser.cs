@@ -9,7 +9,7 @@ namespace Web.Models.Identity
 {
     public class ApplicationUser : IdentityUser
     {
-        public CartItem Cart { get; set; }
+        //public CartItem Cart { get; set; }
     }
    
 }
