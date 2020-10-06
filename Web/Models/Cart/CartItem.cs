@@ -1,10 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Web.Models.Cart
+﻿namespace Web.Models.Cart
 {
     public class CartItem
     {

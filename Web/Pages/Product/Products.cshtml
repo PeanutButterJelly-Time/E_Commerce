@@ -6,7 +6,7 @@
 <div>
     @foreach (var product in Model.List)
     {
-        <section class="card text-center float-left col-5">
+        <section class="card text-center float-left col-5 shadow-lg p-3 mb-5 bg-white rounded">
             <h5>@product.Name</h5>
             <div>
                 <p>Product Type: @product.Discriminator</p>
@@ -19,7 +19,7 @@
                 {
                     <p>Calories: @cereal.Calories</p>
                     <p>
-                        <a class="btn btn-info"
+                        <a class="btn btn-link"
                            asp-controller="Cereal"
                            asp-action="Details"
                            asp-route-id="@cereal.Id">
@@ -27,6 +27,7 @@
                         </a>
                     </p>
                 }
+                <a class="btn shadow-lg">Add to cart</a>
             </div>
         </section>
     }
