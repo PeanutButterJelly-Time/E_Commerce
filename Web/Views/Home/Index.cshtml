@@ -1,8 +1,13 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Peanut Butter Jelly Time</h1>
     <p>This is a cereal store to sell cereal that Arik slaved to make.</p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h2>Current User ID: @Model.UserId</h2>
+    }
 </div>
