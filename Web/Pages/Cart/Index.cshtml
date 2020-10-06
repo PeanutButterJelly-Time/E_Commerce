@@ -1,0 +1,33 @@
+@page
+@model Web.Pages.Cart.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Welcome to your cart!!</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CartItem[0].Product)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CartItem) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Discriminator)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

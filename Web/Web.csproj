@@ -48,5 +48,6 @@
 
   <ItemGroup>
     <Folder Include="Pages\Product\Beer\" />
+    <Folder Include="Pages\Cart\" />
   </ItemGroup>
 </Project>
