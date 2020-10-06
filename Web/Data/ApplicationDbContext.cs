@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web.Models;
+using Web.Models.Cart;
 using Web.Models.Identity;
 using Web.Models.Products;
 
@@ -29,6 +30,12 @@ namespace Web.Data
             SeedRole(builder, "Admin", "get", "create", "update", "delete");
             SeedRole(builder, "User");
 
+            builder.Entity<CartItem>()
+                .HasKey(cartItem => new
+                {
+                    cartItem.UserId,
+                    cartItem.ProductId,
+                });
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Cereal> Cereals { get; set; }
@@ -65,6 +72,7 @@ namespace Web.Data
         }
 
         public DbSet<Beer> Beer { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
     }
 }
