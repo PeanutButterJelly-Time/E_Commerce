@@ -24,14 +24,20 @@ namespace Web.Controllers
             return View(cereals);
         }
 
-        
         // GET: ProductController/Details/5
         public ActionResult Details(int id)
         {
             var cereal = productRepo.GetCereal(id);
             return View(cereal);
         }
-       
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToCart(int id)
+        {
+            // TODO
+            return RedirectToPage("/Cart/Index");
+        }
 
         // GET: ProductController/Create
         public ActionResult Create()

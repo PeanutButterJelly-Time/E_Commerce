@@ -50,8 +50,7 @@ namespace Web.Pages.Product
         public ProductInput Input { get; set; }
         public class ProductInput
         {
-            public string ProductId { get; set; }
-
+            public int ProductId { get; set; }
         }
     }
 
