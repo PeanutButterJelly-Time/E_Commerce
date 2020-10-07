@@ -9,6 +9,7 @@ namespace Web.Models.Cart
         public string UserId { get; set; }
 
         public int ProductId { get; set; }
+        public int Quantity { get; set; }
 
         // Navigation Properties
         public ApplicationUser User { get; set; }
