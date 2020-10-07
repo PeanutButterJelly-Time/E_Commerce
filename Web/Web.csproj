@@ -29,6 +29,16 @@
     <Compile Remove="Migrations\20200930201306_SeedRoles.Designer.cs" />
     <Compile Remove="Migrations\20200930215034_AddGet.cs" />
     <Compile Remove="Migrations\20200930215034_AddGet.Designer.cs" />
+    <Compile Remove="Migrations\20201005230432_Cart.cs" />
+    <Compile Remove="Migrations\20201005230432_Cart.Designer.cs" />
+    <Compile Remove="Migrations\20201007051440_StringIds.cs" />
+    <Compile Remove="Migrations\20201007051440_StringIds.Designer.cs" />
+    <Compile Remove="Migrations\20201007051744_StringIds.cs" />
+    <Compile Remove="Migrations\20201007051744_StringIds.Designer.cs" />
+    <Compile Remove="Migrations\20201007051857_Cart.cs" />
+    <Compile Remove="Migrations\20201007051857_Cart.Designer.cs" />
+    <Compile Remove="Migrations\20201007053006_Cart.cs" />
+    <Compile Remove="Migrations\20201007053006_Cart.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

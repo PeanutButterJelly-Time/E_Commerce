@@ -50,6 +50,9 @@
             </div>
         </nav>
     </header>
+    <div>
+       Cart Items @await Component.InvokeAsync("CartComponent") 
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

@@ -62,7 +62,7 @@ namespace Web
                 var services = serviceScope.ServiceProvider;
                 var myDbContext = services.GetService<ApplicationDbContext>();
                 var myCerealMaker = services.GetService<ICerealRepo>();
-
+                
                 if (!myDbContext.Products.OfType<Cereal>().Any())
                 {
                     foreach (var cereal in myCerealMaker.PopulateCerealsTable())

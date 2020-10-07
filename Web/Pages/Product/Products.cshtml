@@ -27,7 +27,11 @@
                         </a>
                     </p>
                 }
-                <a class="btn shadow-lg">Add to cart</a>
+            <form method="post">
+                <input asp-for="Input.ProductId" value="@product.Id" type="hidden"/>
+                <span asp-validation-for="Input.ProductId" value="@product.Id"></span>
+                <button type="submit" class="btn btn-primary">Add To Cart</button>
+            </form>
             </div>
         </section>
     }

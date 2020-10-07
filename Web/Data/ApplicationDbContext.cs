@@ -27,8 +27,8 @@ namespace Web.Data
                     new Shoe { Id = -2, Name = "AJ5", Manufacturer = "Jordan", Style = Style.High },
                     new Shoe { Id = -3, Name = "AJ13", Manufacturer = "Jordan" }
                 );
-            SeedRole(builder, "Admin", "get", "create", "update", "delete");
-            SeedRole(builder, "User");
+            //SeedRole(builder, "Admin", "get", "create", "update", "delete");
+            //SeedRole(builder, "User");
 
             builder.Entity<CartItem>()
                 .HasKey(cartItem => new
