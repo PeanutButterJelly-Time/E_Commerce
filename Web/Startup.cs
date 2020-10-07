@@ -42,6 +42,7 @@ namespace Web
             services.AddScoped<ICerealRepo, CerealRepo>();
             services.AddScoped<IAdminRepo, AdminRepo>();
             services.AddControllersWithViews();
+            services.AddSingleton<IEmailService, SendGridEmailService>();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
