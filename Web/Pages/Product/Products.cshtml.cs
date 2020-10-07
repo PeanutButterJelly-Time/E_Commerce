@@ -37,10 +37,23 @@ namespace Web.Pages.Product
                 {
                     UserId = userManager.GetUserId(User),
                     ProductId = Input.ProductId,
+                    Quantity = Input.Quantity,
                 };
-                await _context.CartItems.AddAsync(item);
-                await _context.SaveChangesAsync();
-                return LocalRedirect("~/");
+                if(!_context.CartItems.Any(c=> c.ProductId == Input.ProductId))
+                {
+                    await _context.CartItems.AddAsync(item);
+                    await _context.SaveChangesAsync();
+                    return LocalRedirect("/Product/Products");
+                }
+                else
+                {
+                    var update = _context.CartItems.FirstOrDefault(c => c.ProductId == item.ProductId);
+                    update.Quantity = Input.Quantity;
+
+                    await _context.SaveChangesAsync();
+                }
+                    
+                
             }
 
             return Page();
@@ -51,6 +64,7 @@ namespace Web.Pages.Product
         public class ProductInput
         {
             public int ProductId { get; set; }
+            public int Quantity { get; set; }
         }
     }
 

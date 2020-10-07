@@ -30,6 +30,8 @@
             <form method="post">
                 <input asp-for="Input.ProductId" value="@product.Id" type="hidden"/>
                 <span asp-validation-for="Input.ProductId" value="@product.Id"></span>
+                <label asp-for="Input.Quantity"></label>
+                <input asp-for="Input.Quantity" placeholder="0" min="0"/>
                 <button type="submit" class="btn btn-primary">Add To Cart</button>
             </form>
             </div>

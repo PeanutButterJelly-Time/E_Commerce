@@ -29,7 +29,8 @@ namespace Web.Pages.Cart
         public async Task OnGetAsync()
         {
             CartItem = await _context.CartItems
-                .Where(c=> c.UserId == userManager.GetUserId(User))
+                .Where(c => c.UserId == userManager.GetUserId(User))
+                .Where(c => c.Quantity > 0)
                 .Include(c => c.Product).ToListAsync();
         }
     }

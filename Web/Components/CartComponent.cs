@@ -24,7 +24,7 @@ namespace Web.Components
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var userId = userManager.GetUserId((System.Security.Claims.ClaimsPrincipal)User);
-            var cart = await db.CartItems.CountAsync(c => c.UserId == userId);
+            var cart = await db.CartItems.CountAsync(c => c.UserId == userId && c.Quantity > 0);
 
             return View( new CartViewModel
             {
