@@ -65,7 +65,8 @@ namespace Web.Pages.Product
         }
 
         [BindProperty]
-        public ProductInput Input { get; set; }
+        public ProductInput Input { get; set; } = new ProductInput { Quantity = 1 };
+
         public class ProductInput
         {
             public int ProductId { get; set; }
