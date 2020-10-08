@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using SendGrid;
-using System.Text.RegularExpressions;
 using SendGrid.Helpers.Mail;
 
 namespace Web.Services
 {
     public interface IEmailService
     {
-        public async Task SendEmail(string toEmail, string subject, string htmlContent);
+        public Task SendEmail(string toEmail, string subject, string htmlContent);
     }
 
     public class SendGridEmailService : IEmailService
@@ -29,17 +27,17 @@ namespace Web.Services
             var client = new SendGridClient(apiKey);
 
             var fromEmail = configuration["SendGrid:FromEmail"];
-            var from = new EmailAdress(fromEmail);
+            var from = new EmailAddress(fromEmail);
 
-            var to = new EmailAdress(toEmail);
+            var to = new EmailAddress(toEmail);
 
             var textContent = Regex.Replace(htmlContent, "<[^>]+>", "");
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, htmlContent);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, textContent, htmlContent);
 
             var response = await client.SendEmailAsync(msg);
         }
 
-        public TaskTemp()
+        public async Task Temp()
         {
             var apiKey = Environment.GetEnvironmentVariable("NAME_OF_THE_ENVIRONMENT_VARIABLE_FOR_YOUR_SENDGRID_KEY");
             var client = new SendGridClient(apiKey);

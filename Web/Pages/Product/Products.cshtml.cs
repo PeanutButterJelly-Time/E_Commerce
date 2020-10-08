@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Web.Data;
 using Web.Models.Cart;
 using Web.Models.Identity;
@@ -33,34 +34,39 @@ namespace Web.Pages.Product
         {
             if (ModelState.IsValid)
             {
-                var item = new CartItem()
+                var userId = userManager.GetUserId(User);
+
+                var existingCartItem = await _context.CartItems
+                    .FirstOrDefaultAsync(c =>
+                        c.ProductId == Input.ProductId &&
+                        c.UserId == userId
+                    );
+
+                if (existingCartItem == null)
                 {
-                    UserId = userManager.GetUserId(User),
-                    ProductId = Input.ProductId,
-                    Quantity = Input.Quantity,
-                };
-                if(!_context.CartItems.Any(c=> c.ProductId == Input.ProductId))
-                {
-                    await _context.CartItems.AddAsync(item);
-                    await _context.SaveChangesAsync();
-                    return LocalRedirect("/Product/Products");
+                    var item = new CartItem()
+                    {
+                        UserId = userId,
+                        ProductId = Input.ProductId,
+                        Quantity = Input.Quantity,
+                    };
+                    _context.CartItems.Add(item);
                 }
                 else
                 {
-                    var update = _context.CartItems.FirstOrDefault(c => c.ProductId == item.ProductId);
-                    update.Quantity = Input.Quantity;
-
-                    await _context.SaveChangesAsync();
+                    existingCartItem.Quantity += Input.Quantity;
                 }
-                    
-                
+
+                await _context.SaveChangesAsync();
+                return LocalRedirect("/Product/Products");
             }
 
             return Page();
         }
 
         [BindProperty]
-        public ProductInput Input { get; set; }
+        public ProductInput Input { get; set; } = new ProductInput { Quantity = 1 };
+
         public class ProductInput
         {
             public int ProductId { get; set; }
