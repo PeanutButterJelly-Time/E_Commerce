@@ -2,39 +2,43 @@
 @model Web.Pages.Product.ProductsModel
 @{Layout = "_Layout";
 }
-
-<div>
-    @foreach (var product in Model.List)
-    {
-        <section class="card text-center float-left col-5 shadow-lg p-3 mb-5 bg-white rounded">
-            <h5>@product.Name</h5>
-            <div>
-                <p>Product Type: @product.Discriminator</p>
-                <p>Manufacturer: @product.Manufacturer</p>
-                @if (product is Shoe shoe)
-                {
-                    <p>Style: @shoe.Style</p>
-                }
-                else if (product is Cereal cereal)
-                {
-                    <p>Calories: @cereal.Calories</p>
-                    <p>
-                        <a class="btn btn-link"
-                           asp-controller="Cereal"
-                           asp-action="Details"
-                           asp-route-id="@cereal.Id">
-                            Details
-                        </a>
-                    </p>
-                }
-            <form method="post">
-                <input asp-for="Input.ProductId" value="@product.Id" type="hidden"/>
-                <span asp-validation-for="Input.ProductId" value="@product.Id"></span>
-                <label asp-for="Input.Quantity"></label>
-                <input asp-for="Input.Quantity" placeholder="0" min="0"/>
-                <button type="submit" class="btn btn-primary">Add To Cart</button>
-            </form>
+<div class="container">
+    <div class="row">
+        @foreach (var product in Model.List)
+        {
+            <div class="card text-center" style="width: 25rem;">
+                <div class="card-header">
+                    @product.Discriminator
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Manufacturer</p>
+                    <form method="post">
+                        <input asp-for="Input.ProductId" value="@product.Id" type="hidden" />
+                        <span asp-validation-for="Input.ProductId" value="@product.Id"></span>
+                        <label asp-for="Input.Quantity"></label>
+                        <input asp-for="Input.Quantity" placeholder="0" min="0" />
+                        <button type="submit" class="btn btn-primary">Add To Cart</button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                    @if (product is Shoe shoe)
+                    {
+                        <p>Style: @shoe.Style</p>
+                    }
+                    else if (product is Cereal cereal)
+                    {
+                        <p>
+                            <a class="btn btn-link"
+                               asp-controller="Cereal"
+                               asp-action="Details"
+                               asp-route-id="@cereal.Id">
+                                Details
+                            </a>
+                        </p>
+                    }
+                </div>
             </div>
-        </section>
-    }
+        }
+    </div>
 </div>
